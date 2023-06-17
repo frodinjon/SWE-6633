@@ -15,8 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
+
+#from django.conf.urls import include
+from AnimalApp import views
+
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    re_path(r'^animal/$', views.animalApi),
+    re_path(r'^animal/([0-9]+)$', views.animalApi),
+    re_path(r'^userb/$', views.buyerUserApi),
+    re_path(r'^userb/([0-9]+)$', views.buyerUserApi),
+    #path(r'^', include('AnimalApp.urls'))
+    re_path(r'^SaveFile/$', views.SaveFile),
+    re_path(r'^DeleteFile/$', views.DeleteFile)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
