@@ -8,8 +8,8 @@
 
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a routerLink="/signin" class="nav-link">Sign In</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+        <!-- <li class="nav-item"><a routerLink="/signin" class="nav-link">Sign In</a></li> -->
+        <li class="nav-item" *ngIf="true"><a href="#" class="nav-link" (click)="logout()">logout</a></li>
         <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
         <li class="nav-item"><a href="#" class="nav-link">About</a></li>
       </ul>
