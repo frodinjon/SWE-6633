@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8" >
+        <div class="row" >
+            <div class="col-3" *ngFor="let pet of tempPets" style="padding-bottom:1rem" >
+                <div class="card" style="width: 15rem;">
+                    <img src="assets/dog-1232449_1280.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{pet.name}}</h5>
+                        <p class="card-text">{{pet.breed}}</p>
+                        <a [routerLink]="['/petDetails', pet.petId]" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>
