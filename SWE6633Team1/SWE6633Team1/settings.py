@@ -42,10 +42,28 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'AnimalApp.apps.AnimalappConfig',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken',
+    'users'
 ]
+
+#TODO: Validate this
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+#AUTH_USER_MODEL = 'users.User'
+
 # TODO: REMOVE THIS LATER
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+   "http://localhost:4200",
+]
 # TODO: FIND OUT IF THIS IS RIGHT
 #CORS_ORIGIN_WHITELIST = ('http://localhost')
 

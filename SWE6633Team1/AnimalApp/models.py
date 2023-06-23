@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import User
+
 # Create your models here.
 
 class Animal(models.Model):
@@ -21,3 +23,10 @@ class SellerUser(models.Model):
     SellerUserPassword = models.CharField(max_length=100)
     SellerUserLocation = models.IntegerField()
 
+
+class Message(models.Model):
+    MessageId = models.AutoField(primary_key=True)
+    MessageSenderId = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="message_sender_id")
+    MessageReceiverId = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="message_receiver_id")
+    IsRead = models.BooleanField(blank=False)
+    MessageBody = models.CharField(max_length=50000)
