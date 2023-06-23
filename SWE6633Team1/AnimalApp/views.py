@@ -1,3 +1,5 @@
+from rest_framework import viewsets
+from rest_framework.permissions import BasePermission, DjangoModelPermissionsOrAnonReadOnly
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
@@ -10,6 +12,18 @@ from django.core.files.storage import default_storage
 
 import uuid
 
+def response_helper(success, message="", data=0):
+    return {
+        "success": success,
+        "message": message,
+        "data": data
+    }
+
+class AnimalViewSet(viewsets.ModelViewSet):
+    queryset = Animal.objects.all()
+    serializer_class = AnimalSerializer
+    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+
 # Create your views here.
 ### ANIMAL ###
 @csrf_exempt
@@ -18,33 +32,43 @@ def animalApi(request, id=0):
         if (id == 0):
             animal = Animal.objects.all()
             animal_serializer = AnimalSerializer(animal, many=True)
-            return JsonResponse(animal_serializer.data, safe=False)
+            return JsonResponse(data = response_helper(True, "", animal_serializer.data), safe=False)
         else:
             try:
                 animal = Animal.objects.get(AnimalId = id)
             except:
-                return JsonResponse("Animal Not Found", safe = False)
+                return JsonResponse(data = response_helper(False, "Animal Not Found"), safe = False)
             animal_serializer = AnimalSerializer(animal, many = False)
-            return JsonResponse(animal_serializer.data, safe = False)
+            return JsonResponse(data = response_helper(True, "", animal_serializer.data), safe = False)
     elif request.method == 'POST':
         animal_data=JSONParser().parse(request)
         animal_serializer = AnimalSerializer(data=animal_data)
         if animal_serializer.is_valid():
-            animal_serializer.save()
-            return JsonResponse("Added Successfully", safe = False)
-        return JsonResponse("Failed to Add.", safe = False)
+            try:
+                animal_serializer.save()
+            except:
+                return JsonResponse(data = response_helper(False, "Failed to Save. Please Try Again"), safe=False)
+            #On Successful Save
+            return JsonResponse(data = response_helper(True, "Added Successfully"), safe = False)
+        return JsonResponse(data = response_helper(False, "Failed to Add"), safe = False)
     elif request.method == 'PUT':
         animal_data = JSONParser().parse(request)
         animal = Animal.objects.get(AnimalId = animal_data['AnimalId'])
         animal_serializer = AnimalSerializer(animal, data=animal_data)
         if animal_serializer.is_valid():
-            animal_serializer.save()
-            return JsonResponse("Updated Successfully!", safe = False)
-        return JsonResponse("Failed to Update.", safe = False)
+            try:
+                animal_serializer.save()
+                return JsonResponse(data = response_helper(True, "Updated Successfully!"), safe = False)
+            except:
+                return JsonResponse(data = response_helper(False, "Failed to Save. Please Try Again."), safe=False)
+        return JsonResponse(data = response_helper(False, "Failed to Update."), safe = False)
     elif request.method == 'DELETE':
-        animal = Animal.objects.get(AnimalId = id)
-        animal.delete()
-        return JsonResponse("Deleted Successfully!", safe = False)
+        try:
+            animal = Animal.objects.get(AnimalId = id)
+            animal.delete()
+            return JsonResponse(data=response_helper(True, "Deleted Successfully!"), safe = False)
+        except:
+            return JsonResponse(data=response_helper(False, "Failed to Delete"), safe=False)
     
     
 ### CUSTOMER USER ###
@@ -93,11 +117,28 @@ def SaveFile(request):
         extension = str.split(file.name, '.')[1]
         unique_filename += '.' + extension
         file_name = default_storage.save(unique_filename, file)
-        return JsonResponse(file_name, safe = False)
+        return JsonResponse(data = response_helper(True, file_name), safe = False)
     except:
-        return JsonResponse("Failed to Save File.", safe=False)
+        return JsonResponse(data = response_helper(False, "Failed to Save File."), safe=False)
 
 ### DELETE FILE ###
+@csrf_exempt
+def DeleteFile(request):
+    if request.method != 'DELETE':
+        return JsonResponse(data = response_helper(False, "Invalid Request!"), safe = False)
+    try:
+        request_data = JSONParser().parse(request)
+        file_name = request_data['fileName']
+        if default_storage.exists(file_name):
+            default_storage.delete(file_name)
+            return JsonResponse(data = response_helper(True, "File Deleted Successfully!"), safe = False)
+        else:
+            return JsonResponse(data = response_helper(False, "No Such File"), safe = False)
+    except:
+        return JsonResponse(data = response_helper(False, "Failed to Delete File."), safe=False)
+    
+
+### GET ALL MESSAGES ###
 @csrf_exempt
 def DeleteFile(request):
     if request.method != 'DELETE':
@@ -107,8 +148,8 @@ def DeleteFile(request):
         file_name = request_data['fileName']
         if default_storage.exists(file_name):
             default_storage.delete(file_name)
-            return JsonResponse("File Deleted Successfully!", safe = False)
+            return JsonResponse(data = response_helper(True, "File Deleted Successfully!"), safe = False)
         else:
-            return JsonResponse("No Such File.", safe = False)
+            return JsonResponse(data = response_helper(False, "No Such File."), safe = False)
     except:
-        return JsonResponse("Failed to Delete File.", safe=False)
+        return JsonResponse(data = response_helper(False, "Failed to Delete File."), safe=False)
