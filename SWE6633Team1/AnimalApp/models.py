@@ -4,10 +4,23 @@ from users.models import User
 
 # Create your models here.
 
-class Animal(models.Model):
-    AnimalId = models.AutoField(primary_key=True)
-    AnimalName = models.CharField(max_length=100)
-    AnimalBreed = models.CharField(max_length=100)
+class animals(models.Model):
+    animal_id = models.AutoField(primary_key=True)
+    animal_type = models.CharField(max_length=255)
+    age = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    species = models.CharField(max_length=255)
+    gender = models.CharField(max_length=255)
+    size = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    photos = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    phone = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    postcode = models.CharField(max_length=255)
+    address1 = models.CharField(max_length=255)
 
 
 class BuyerUser(models.Model):
