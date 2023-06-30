@@ -3,6 +3,13 @@ from django.db import models
 from users.models import User
 
 # Create your models here.
+class AppUser(models.Model):
+    app_user_id = models.AutoField(primary_key=True)
+    user_first_name = models.CharField(max_length=100)
+    user_last_name = models.CharField(max_length=100)
+    user_location = models.IntegerField()
+    user_is_seller = models.BooleanField()
+
 
 class animals(models.Model):
     animal_id = models.AutoField(primary_key=True)
@@ -21,6 +28,8 @@ class animals(models.Model):
     city = models.CharField(max_length=255)
     postcode = models.CharField(max_length=255)
     address1 = models.CharField(max_length=255)
+    is_sold = models.BooleanField(null = True, blank = True)
+    animal_owner_id = models.ForeignKey(AppUser, on_delete=models.SET_NULL, null=True, related_name="owner", blank = True)
 
 
 class BuyerUser(models.Model):
@@ -39,7 +48,10 @@ class SellerUser(models.Model):
 
 class Message(models.Model):
     MessageId = models.AutoField(primary_key=True)
-    MessageSenderId = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="message_sender_id")
-    MessageReceiverId = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="message_receiver_id")
+    MessageSenderId = models.ForeignKey(AppUser, on_delete=models.SET_NULL, null=True, related_name="message_sender_id")
+    MessageReceiverId = models.ForeignKey(AppUser, on_delete=models.SET_NULL, null=True, related_name="message_receiver_id")
     IsRead = models.BooleanField(blank=False)
     MessageBody = models.CharField(max_length=50000)
+
+
+    
