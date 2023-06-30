@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-jiwn3bg)&m*u4wukqbh1bs2ksmv62t$ve^#@8+up8hx(f6g7e#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'mysql://doadmin:AVNS_mNg43ZfmF6gRLtkxLGq@db-mysql-pet-adoption-do-user-14232246-0.b.db.ondigitalocean.com:25060/defaultdb?ssl-mode=REQUIRED']
 
 
 # Application definition
@@ -102,13 +102,25 @@ WSGI_APPLICATION = 'SWE6633Team1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': 'doadmin',
+        'PASSWORD': 'AVNS_mNg43ZfmF6gRLtkxLGq',
+        'HOST': 'db-mysql-pet-adoption-do-user-14232246-0.b.db.ondigitalocean.com',
+        'PORT': '25060',
+        'NAME': 'defaultdb',
+        'OPTIONS': {
+            'ssl': True
+            },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
