@@ -1,13 +1,26 @@
 from rest_framework import serializers
-from AnimalApp.models import BuyerUser, SellerUser, Animal
+from AnimalApp.models import BuyerUser, SellerUser, animals
 
 class AnimalSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Animal
+        model = animals
         fields = (
-            'AnimalId', 
-            'AnimalName', 
-            'AnimalBreed'
+            'animal_id', 
+            'animal_type', 
+            'age',
+            'name',
+            'species',
+            'gender',
+            'size',
+            'description',
+            'photos',
+            'email',
+            'phone',
+            'state',
+            'country',
+            'city',
+            'postcode',
+            'address1'
             )
 
 
