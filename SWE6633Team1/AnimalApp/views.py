@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
-from AnimalApp.models import Animal, BuyerUser, SellerUser
+from AnimalApp.models import animals, BuyerUser, SellerUser
 from AnimalApp.serializers import AnimalSerializer, BuyerUserSerializer, SellerUserSerializer
 
 from django.core.files.storage import default_storage
@@ -20,7 +20,7 @@ def response_helper(success, message="", data=0):
     }
 
 class AnimalViewSet(viewsets.ModelViewSet):
-    queryset = Animal.objects.all()
+    queryset = animals.objects.all()
     serializer_class = AnimalSerializer
     permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
 
@@ -30,12 +30,12 @@ class AnimalViewSet(viewsets.ModelViewSet):
 def animalApi(request, id=0):
     if request.method == 'GET':
         if (id == 0):
-            animal = Animal.objects.all()
+            animal = animals.objects.all()
             animal_serializer = AnimalSerializer(animal, many=True)
             return JsonResponse(data = response_helper(True, "", animal_serializer.data), safe=False)
         else:
             try:
-                animal = Animal.objects.get(AnimalId = id)
+                animal = animals.objects.get(animal_id = id)
             except:
                 return JsonResponse(data = response_helper(False, "Animal Not Found"), safe = False)
             animal_serializer = AnimalSerializer(animal, many = False)
@@ -53,7 +53,7 @@ def animalApi(request, id=0):
         return JsonResponse(data = response_helper(False, "Failed to Add"), safe = False)
     elif request.method == 'PUT':
         animal_data = JSONParser().parse(request)
-        animal = Animal.objects.get(AnimalId = animal_data['AnimalId'])
+        animal = animals.objects.get(animal_id = animal_data['animal_id'])
         animal_serializer = AnimalSerializer(animal, data=animal_data)
         if animal_serializer.is_valid():
             try:
@@ -64,7 +64,7 @@ def animalApi(request, id=0):
         return JsonResponse(data = response_helper(False, "Failed to Update."), safe = False)
     elif request.method == 'DELETE':
         try:
-            animal = Animal.objects.get(AnimalId = id)
+            animal = animals.objects.get(animal_id = id)
             animal.delete()
             return JsonResponse(data=response_helper(True, "Deleted Successfully!"), safe = False)
         except:
