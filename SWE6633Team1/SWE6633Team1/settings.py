@@ -103,27 +103,25 @@ WSGI_APPLICATION = 'SWE6633Team1.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'USER': 'Jon',
-#         #'USER': 'Ploynapas',
-#         'PASSWORD': 'AVNS_mNg43ZfmF6gRLtkxLGq',
-#         #'PASSWORD' : 'AVNS_HHffj1xN7zbSVlyZTxF',
-#         'HOST': 'db-mysql-pet-adoption-do-user-14232246-0.b.db.ondigitalocean.com',
-#         'PORT': '25060',
-#         'NAME': 'defaultdb',
-#         'OPTIONS': {
-#             'ssl': True
-#             },
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': 'doadmin',
+        'PASSWORD': 'AVNS_mNg43ZfmF6gRLtkxLGq',
+        'HOST': 'db-mysql-pet-adoption-do-user-14232246-0.b.db.ondigitalocean.com',
+        'PORT': '25060',
+        'NAME': 'testPetAdoption',
+        'OPTIONS': {
+            'ssl': True
+            },
+    }
+}
 
 
 # Password validation

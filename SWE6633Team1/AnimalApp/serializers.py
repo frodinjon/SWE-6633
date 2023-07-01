@@ -1,9 +1,10 @@
 from rest_framework import serializers
-from AnimalApp.models import BuyerUser, SellerUser, animals
+from AnimalApp.models2 import Animals
+#BuyerUser, SellerUser, Animals, AppUser
 
 class AnimalSerializer(serializers.ModelSerializer):
     class Meta:
-        model = animals
+        model = Animals
         fields = (
             'animal_id', 
             'animal_type', 
@@ -20,26 +21,28 @@ class AnimalSerializer(serializers.ModelSerializer):
             'country',
             'city',
             'postcode',
-            'address1'
+            'address1',
+            'is_sold',
+            'owner_id'
             )
 
 
-class BuyerUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = BuyerUser
-        feilds = (
-            'BuyerUserId', 
-            'BuyerUserName', 
-            'BuyerUserPassword', 
-            'BuyerUserLocation'
-            )
+# class BuyerUserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = BuyerUser
+#         feilds = (
+#             'BuyerUserId', 
+#             'BuyerUserName', 
+#             'BuyerUserPassword', 
+#             'BuyerUserLocation'
+#             )
         
-class SellerUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SellerUser
-        feilds = (
-            'SellerUserId', 
-            'SellerUserName', 
-            'SellerUserPassword', 
-            'SellerUserLocation'
-            )
+# class SellerUserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = SellerUser
+#         feilds = (
+#             'SellerUserId', 
+#             'SellerUserName', 
+#             'SellerUserPassword', 
+#             'SellerUserLocation'
+#             )
