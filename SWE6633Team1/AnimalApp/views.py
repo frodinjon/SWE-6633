@@ -119,8 +119,10 @@ def appUserApi(request, id=0):
     
 ### MESSAGES ###
 @csrf_exempt
-def messageApi(request, id=0, user_id=0):
+def messageApi(request, id=0):
     if request.method == 'GET':
+        message_data = JSONParser().parse(request)
+        user_id = message_data['user_id']
         if (id == 0):
             messages = Messages.objects.all()
             if (user_id == 0):
@@ -135,19 +137,19 @@ def messageApi(request, id=0, user_id=0):
                 message = Messages.objects.get(message_id = id)
             except:
                 return JsonResponse(data = response_helper(False, "User Not Found"), safe = False)
-            appuser_serializer = AnimalSerializer(user, many = False)
-            return JsonResponse(data = response_helper(True, "", appuser_serializer.data), safe = False)
+            message_serializer = MessageSerializer(message, many = False)
+            return JsonResponse(data = response_helper(True, "", message_serializer.data), safe = False)
     elif request.method == 'POST':
-        appuser_data=JSONParser().parse(request)
-        appuser_serializer = AppuserSerializer(data=appuser_data)
-        if appuser_serializer.is_valid():
+        message_data=JSONParser().parse(request)
+        message_serializer = MessageSerializer(data=message_data)
+        if message_serializer.is_valid():
             try:
-                appuser_serializer.save()
+                message_serializer.save()
             except:
-                return JsonResponse(data = response_helper(False, "Failed to Save. Please Try Again"), safe=False)
+                return JsonResponse(data = response_helper(False, "Failed to Send. Please Try Again"), safe=False)
             #On Successful Save
-            return JsonResponse(data = response_helper(True, "Added Successfully"), safe = False)
-        return JsonResponse(data = response_helper(False, "Failed to Add"), safe = False)
+            return JsonResponse(data = response_helper(True, "Sent Successfully"), safe = False)
+        return JsonResponse(data = response_helper(False, "Failed to Send"), safe = False)
     elif request.method == 'PUT':
         appuser_data = JSONParser().parse(request)
         user = Appusers.objects.get(user_id = appuser_data['user_id'])

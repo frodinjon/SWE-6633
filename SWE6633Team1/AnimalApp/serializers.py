@@ -41,9 +41,10 @@ class AppuserSerializer(serializers.ModelSerializer):
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Messages
-        fileds = (
-            'message_id',
-            'message_body',
-            'receiver',
-            'sender'
-        )
+        fields = '__all__'
+        # fileds = (
+        #     'message_id',
+        #     'message_body',
+        #     'receiver',
+        #     'sender'
+        # )
