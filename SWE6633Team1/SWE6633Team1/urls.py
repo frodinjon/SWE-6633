@@ -36,6 +36,11 @@ urlpatterns = [
     # re_path(r'^$', RedirectView.as_view(url=reverse_lazy('api-root'), permanent=False)),
     re_path(r'^animal/$', views.animalApi),
     re_path(r'^animal/([0-9]+)$', views.animalApi),
+    re_path(r'^user/$', views.appUserApi),
+    re_path(r'^user/([0-9]+)$', views.appUserApi),
+    re_path(r'^messages/$', views.messageApi),
+    re_path(r'^messages/([0-9]+)$', views.messageApi),
+    re_path(r'^messages/([0-9]+)/([0-9]+)$', views.messageApi)
     # re_path(r'^userb/$', views.buyerUserApi),
     # re_path(r'^userb/([0-9]+)$', views.buyerUserApi),
     #path(r'^', include('AnimalApp.urls'))
