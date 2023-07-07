@@ -4,12 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth'
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
-import { MatInputModule } from '@angular/material/input'
-import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './components/register/register.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { CreateListingComponent } from './components/create-listing/create-listing.component';
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ListPetsComponent,
     PetDetailComponent,
     LandingComponent,
-    RegisterComponent
+    RegisterComponent,
+    CreateListingComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatSnackBarModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

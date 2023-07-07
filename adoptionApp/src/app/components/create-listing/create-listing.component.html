@@ -1,0 +1,33 @@
+<main>
+<form [formGroup]="form">
+    <h1>Create an adoption listing!</h1>
+    <mat-form-field appearance="fill">
+        <mat-label>Pet Name</mat-label>
+        <input matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Pet Type</mat-label>
+        <mat-select>
+          <mat-option value="cat">Cat</mat-option>
+          <mat-option value="dog">Dog</mat-option>
+          <mat-option value="bird">Bird</mat-option>
+          <mat-option value="other">Other</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Pet Age</mat-label>
+        <input matInput type = "number">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Pet Description</mat-label>
+        <textarea matInput type rows="7"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="submitListing()"> Create Listing </button>
+</form>
+
+</main>
+  
