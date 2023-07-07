@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-jiwn3bg)&m*u4wukqbh1bs2ksmv62t$ve^#@8+up8hx(f6g7e#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'mysql://doadmin:AVNS_mNg43ZfmF6gRLtkxLGq@db-mysql-pet-adoption-do-user-14232246-0.b.db.ondigitalocean.com:25060/defaultdb?ssl-mode=REQUIRED']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'mysql://doadmin:AVNS_mNg43ZfmF6gRLtkxLGq@db-mysql-pet-adoption-do-user-14232246-0.b.db.ondigitalocean.com:25060/defaultdb?ssl-mode=REQUIRED']
 
 
 # Application definition

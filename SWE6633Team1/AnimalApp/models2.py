@@ -39,6 +39,8 @@ class Appusers(models.Model):
     last_name = models.CharField(max_length=100)
     location = models.CharField(max_length=25)
     is_seller = models.IntegerField()
+    email = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
 
     class Meta:
         managed = False
