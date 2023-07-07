@@ -52,6 +52,7 @@ class Messages(models.Model):
     message_body = models.TextField()
     receiver = models.ForeignKey(Appusers, models.DO_NOTHING, blank=True, null=True)
     sender = models.ForeignKey(Appusers, models.DO_NOTHING, related_name='messages_sender_set', blank=True, null=True)
+    is_unread = models.IntegerField()
 
     class Meta:
         managed = False

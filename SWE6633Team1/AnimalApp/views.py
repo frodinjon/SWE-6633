@@ -135,12 +135,17 @@ def messageApi(request, id=0):
         else:
             try:
                 message = Messages.objects.get(message_id = id)
+                #marks the message as read when it is fetched
+                message.is_unread = 0
+                message.save()
             except:
-                return JsonResponse(data = response_helper(False, "User Not Found"), safe = False)
+                return JsonResponse(data = response_helper(False, "Message Not Found"), safe = False)
             message_serializer = MessageSerializer(message, many = False)
             return JsonResponse(data = response_helper(True, "", message_serializer.data), safe = False)
     elif request.method == 'POST':
         message_data=JSONParser().parse(request)
+        # marks all outgoing messages as unread
+        message_data['is_unread'] = 1
         message_serializer = MessageSerializer(data=message_data)
         if message_serializer.is_valid():
             try:
@@ -156,6 +161,7 @@ def messageApi(request, id=0):
         appuser_serializer = AppuserSerializer(user, data=appuser_data)
         if appuser_serializer.is_valid():
             try:
+                appuser_data['is_unread'] = 1
                 appuser_serializer.save()
                 return JsonResponse(data = response_helper(True, "Updated Successfully!"), safe = False)
             except:
