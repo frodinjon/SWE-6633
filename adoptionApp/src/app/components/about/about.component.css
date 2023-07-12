@@ -1,0 +1,22 @@
+.row {
+      background-color: rgb(233, 233, 233);
+}
+
+h1 {
+      margin-left: 10px;
+}
+
+p {
+      margin-left: 20px;
+}
+
+@media (max-width: 500px) {
+      h1 {
+            font-size: 1.5rem;
+      }
+
+      p {
+            font-size: 1.5rem;
+            color: rgb(255, 255, 255);
+      }
+}

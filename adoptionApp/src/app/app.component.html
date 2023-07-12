@@ -1,19 +1,23 @@
 <div class="container">
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-4" style="font-family:SF-Pro-Display-Thin; font-size:42px;"><b>Paw</b>Prints</span>
-        <img src="../assets/images/favicon-32x32.png">
-      </a>
+  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+      <svg class="bi me-2" width="40" height="32">
+        <use xlink:href="#bootstrap"></use>
+      </svg>
+      <span class="fs-4" style="font-family:SF-Pro-Display-Thin; font-size:42px;"><b>Paw</b>Prints</span>
+      <img src="../assets/images/favicon-32x32.png">
+    </a>
 
-      <ul class="nav nav-pills">
-        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-        <!-- <li class="nav-item"><a routerLink="/signin" class="nav-link">Sign In</a></li> -->
-        <li class="nav-item" *ngIf="true"><a href="#" class="nav-link" (click)="logout()">logout</a></li>
-        <li class="nav-item"><a routerLink="/createListing" class="nav-link">Create Listing</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-      </ul>
-    </header>
-  </div>
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+      <!-- <li class="nav-item"><a routerLink="/signin" class="nav-link">Sign In</a></li> -->
+      <li class="nav-item"><a routerLink="/createListing" class="nav-link">Create Listing</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Adoptees</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Shelters</a></li>
+      <li class="nav-item"><a routerLink="/about" class="nav-link">About</a></li>
+      <li class="nav-item" *ngIf="true"><a href="#" class="nav-link" (click)="logout()">Logout</a></li>
+    </ul>
+  </header>
+</div>
 
 <router-outlet></router-outlet>

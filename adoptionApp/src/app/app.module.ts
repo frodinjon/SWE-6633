@@ -22,6 +22,7 @@ import { RegisterComponent } from './components/register/register.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateListingComponent } from './components/create-listing/create-listing.component';
+import { AboutComponent } from './components/about/about.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { CreateListingComponent } from './components/create-listing/create-listi
     PetDetailComponent,
     LandingComponent,
     RegisterComponent,
-    CreateListingComponent
+    CreateListingComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
