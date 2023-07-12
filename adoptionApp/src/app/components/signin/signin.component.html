@@ -12,12 +12,14 @@
             <input type="password" matInput placeholder="Password" formControlName="password">
             <mat-error *ngIf="form.get('password')!.hasError('required')">Password is required</mat-error>
         </mat-form-field> 
+
+        <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="login()" *ngIf="!isLoggingIn"> Login </button>
+        <button mat-raised-button color="primary" class="button-loader" *ngIf="isLoggingIn"> <mat-spinner color="accent" diameter="20"></mat-spinner> </button>
+        <button mat-stroked-button color="primary" routerLink="/register">  Register </button>
         <div class="align-to-right">
             <button mat-button [disabled]="!form.get('email')!.valid" (click)="recoverPassword()" *ngIf="!isRecoveringPassword">Recover Password</button>
             <button mat-button class="button-loader" *ngIf="isRecoveringPassword"><mat-spinner color="primary" diameter="20"></mat-spinner></button>
         </div>
-        <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="login()" *ngIf="!isLoggingIn"> Login </button>
-        <button mat-raised-button color="primary" class="button-loader" *ngIf="isLoggingIn"> <mat-spinner color="accent" diameter="20"></mat-spinner> </button>
-        <button mat-stroked-button color="primary" routerLink="/register">  Register </button>
+        
     </form>
 </main>

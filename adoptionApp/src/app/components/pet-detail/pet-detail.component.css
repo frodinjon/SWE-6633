@@ -9,10 +9,6 @@ main {
 button {
     width: -webkit-fill-available;
     margin: 5px 0;
-
-    /* &[mat-button] {
-        width:auto;
-    } */
 }
 
 .align-to-right {
