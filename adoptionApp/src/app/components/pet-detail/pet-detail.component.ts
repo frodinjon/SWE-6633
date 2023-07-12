@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Pet } from 'src/app/interfaces/pet';
 import { ApiService } from 'src/app/services/api.service';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-pet-detail',
