@@ -29,16 +29,16 @@
         <div class="col-6"></div>
     </div> -->
 
-        <mat-card>
+        <mat-card *ngIf="pet">
             <mat-card-title>Meet {{pet.name}}!</mat-card-title>
-            <img src= "assets/dog-1232449_1280.jpg" style="width:30rem;">
+            <img src= "{{pet.imageName}}" style="width:30rem;">
 
             <hr>
 
             <ul>
-                <li><b>Breed: </b>{{pet.breed}}</li>
-                <li><b>Cost: </b>{{pet.cost}}$</li>
-                <li><b>Description: </b> This is a description</li>
+                <li *ngIf="pet.breed"><b>Breed: </b>{{pet.breed}}</li>
+                <li *ngIf="pet.cost"><b>Cost: </b>{{pet.cost}}$</li>
+                <li *ngIf="pet.description"><b>Description: </b> {{pet.description}}</li>
             </ul>
             <button mat-raised-button color="primary"> Adopt Now! </button>
         </mat-card>
