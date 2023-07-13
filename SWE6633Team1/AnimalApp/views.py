@@ -34,14 +34,15 @@ def animalApi(request, id=0):
         if (id == 0):
             animal = Animals.objects.all()
             animal_serializer = AnimalSerializer(animal, many=True)
-            return JsonResponse(data = response_helper(True, "", animal_serializer.data), safe=False)
+            return JsonResponse(animal_serializer.data, safe=False)
+            # return JsonResponse(data = response_helper(True, "", animal_serializer.data), safe=False)
         else:
             try:
                 animal = Animals.objects.get(animal_id = id)
             except:
-                return JsonResponse(data = response_helper(False, "Animal Not Found"), safe = False)
+                return JsonResponse("Animal Not Found", safe = False)
             animal_serializer = AnimalSerializer(animal, many = False)
-            return JsonResponse(data = response_helper(True, "", animal_serializer.data), safe = False)
+            return JsonResponse(animal_serializer.data, safe = False)
     elif request.method == 'POST':
         animal_data=JSONParser().parse(request)
         animal_serializer = AnimalSerializer(data=animal_data)
@@ -49,28 +50,29 @@ def animalApi(request, id=0):
             try:
                 animal_serializer.save()
             except:
-                return JsonResponse(data = response_helper(False, "Failed to Save. Please Try Again"), safe=False)
+                return JsonResponse("Failed to Save. Please Try Again", safe=False)
             #On Successful Save
-            return JsonResponse(data = response_helper(True, "Added Successfully"), safe = False)
-        return JsonResponse(data = response_helper(False, "Failed to Add"), safe = False)
+            return JsonResponse("Added Successfully", safe = False)
+        return JsonResponse("Failed to Add", safe = False)
     elif request.method == 'PUT':
         animal_data = JSONParser().parse(request)
+        print(animal_data)
         animal = Animals.objects.get(animal_id = animal_data['animal_id'])
         animal_serializer = AnimalSerializer(animal, data=animal_data)
         if animal_serializer.is_valid():
             try:
                 animal_serializer.save()
-                return JsonResponse(data = response_helper(True, "Updated Successfully!"), safe = False)
+                return JsonResponse("Updated Successfully!", safe = False)
             except:
-                return JsonResponse(data = response_helper(False, "Failed to Save. Please Try Again."), safe=False)
-        return JsonResponse(data = response_helper(False, "Failed to Update."), safe = False)
+                return JsonResponse("Failed to Save. Please Try Again.", safe=False)
+        return JsonResponse("Failed to Update.", safe = False)
     elif request.method == 'DELETE':
         try:
             animal = Animals.objects.get(animal_id = id)
             animal.delete()
-            return JsonResponse(data=response_helper(True, "Deleted Successfully!"), safe = False)
+            return JsonResponse("Deleted Successfully!", safe = False)
         except:
-            return JsonResponse(data=response_helper(False, "Failed to Delete"), safe=False)
+            return JsonResponse("Failed to Delete", safe=False)
     
 ### APPUSERS ###
 @csrf_exempt
