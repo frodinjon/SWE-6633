@@ -1,3 +1,4 @@
+
 * {
       margin: 0px;
       padding: 0px;
@@ -19,8 +20,10 @@ body {
       text-align: center;
       margin: 20px auto;
 
+/* .row {
       background-color: rgb(233, 233, 233);
-}
+} */
+
 
 .heading h1 {
 
@@ -72,11 +75,16 @@ body {
       height: auto;
       display: block;
       transition: 0.5s ease;
+h1 {
+      margin-left: 10px;
+      margin-top: 10px;
+
 }
 
 .about-image img {
       transform: scale(1.2);
 }
+
 
 .about-content {
       flex: 1;
@@ -144,3 +152,15 @@ about-content .read-more:hover{
             font-size: 16px;
       }
 }
+
+      /* @media (max-width: 500px) {
+            h1 {
+                  font-size: 1.5rem;
+            }
+
+            p {
+                  font-size: 1.5rem;
+                  color: rgb(255, 255, 255);
+            }
+      } */
+

@@ -1,0 +1,28 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:fit-content;
+    flex-direction: column;
+}
+
+button {
+    width: -webkit-fill-available;
+    margin: 5px 0;
+}
+
+.align-to-right {
+    text-align: right;
+    width: 100%;
+}
+
+.button-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0;
+}
+
+mat-form-field {
+    margin-bottom: 8px;
+}
