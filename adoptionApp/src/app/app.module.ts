@@ -24,7 +24,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateListingComponent } from './components/create-listing/create-listing.component';
 import { AboutComponent } from './components/about/about.component';
-
+import { SharedService } from './shared.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +59,7 @@ import { AboutComponent } from './components/about/about.component';
     MatSelectModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
