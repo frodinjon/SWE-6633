@@ -75,7 +75,7 @@ body {
 }
 
 .about-image img {
-      transfor: scale(1.2);
+      transform: scale(1.2);
 }
 
 .about-content {
@@ -123,7 +123,7 @@ about-content .read-more:hover{
       }
       .heading p {
             font-size:17 px;
-            margin-botton:0 px;
+            margin-bottom:0 px;
       }
       .container {
             padding:0px;
